@@ -37,6 +37,7 @@ public class Ventana extends JFrame{
 		tag_title.setVerticalAlignment(JLabel.CENTER);
 		tag_title.setHorizontalAlignment(JLabel.CENTER);
 		this.add(tag_title);
+		
 	}
 
 }
