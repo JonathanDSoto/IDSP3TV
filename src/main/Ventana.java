@@ -4,8 +4,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class Ventana extends JFrame{
 
@@ -13,11 +22,11 @@ public class Ventana extends JFrame{
 		
 		//CONFIGURACIONES BÁSICAS
 		this.setVisible(true);
-		this.setSize(500, 500);
+		this.setSize(1000, 500);
 		//this.setLocation(200, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(200,200));
-		this.setMaximumSize(new Dimension(800,800));
+		this.setMaximumSize(new Dimension(1000,800));
 		this.setLocationRelativeTo(null);
 		this.setTitle("Hola");
 		this.setLayout(null);
@@ -26,17 +35,126 @@ public class Ventana extends JFrame{
 		this.getContentPane().setBackground(Color.black);
 		//this.setBounds(200,200,500,500);
 		
+		JPanel login_container = new JPanel();
+		login_container.setSize(400, 400);
+		login_container.setLocation(50, 50);
+		login_container.setBackground(Color.decode("#B979E8"));
+		login_container.setLayout(null);
+		this.add(login_container);
+		
 		//AÑADIENDO ELEMENTOS
 		JLabel tag_title = new JLabel();
 		tag_title.setText("Bienvenido");
 		tag_title.setSize(150, 30);
-		tag_title.setLocation(175,20);
+		tag_title.setLocation(125,20);
 		tag_title.setBackground(Color.white);
 		tag_title.setOpaque(true);
 		tag_title.setFont(new Font("Arial",Font.PLAIN,22));
 		tag_title.setVerticalAlignment(JLabel.CENTER);
 		tag_title.setHorizontalAlignment(JLabel.CENTER);
-		this.add(tag_title);
+		login_container.add(tag_title);
+		
+		JLabel tag_email = new JLabel("Correo electrónico");
+		tag_email.setBounds(61,120,150, 30); 
+		tag_email.setBackground(Color.white);
+		tag_email.setOpaque(true);
+		login_container.add(tag_email);
+		
+		JTextField email_input = new JTextField();
+		email_input.setSize(280, 40);
+		email_input.setLocation(60, 150);
+		login_container.add(email_input);
+		
+		JLabel tag_password = new JLabel("Contraseña");
+		tag_password.setBounds(61,200,150, 30); 
+		tag_password.setBackground(Color.white);
+		tag_password.setOpaque(true);
+		login_container.add(tag_password);
+		
+		JPasswordField password = new JPasswordField();
+		password.setSize(280, 40);
+		password.setLocation(60, 230);
+		login_container.add(password);
+		
+		JCheckBox rememberme = new JCheckBox("Hola");
+		rememberme.setSize(140, 40);
+		rememberme.setLocation(60, 300); 
+		//rememberme.setOpaque(false); 
+		login_container.add(rememberme);
+		
+		JButton access_btn = new JButton();
+		access_btn.setText("Acceder"); 
+		access_btn.setBounds(100, 350, 200, 40);
+		access_btn.setFont(new Font("Arial",Font.ITALIC,18));
+		login_container.add(access_btn);
+		
+		
+		JPanel rgs_container = new JPanel();
+		rgs_container.setBounds(500, 50, 400, 400);
+		rgs_container.setOpaque(true);
+		rgs_container.setBackground(Color.green);
+		rgs_container.setLayout(null);
+		this.add(rgs_container);
+		
+		//titulo 
+		
+		//label name
+		//input name
+		
+		JLabel bio_tag = new JLabel("BIO");
+		bio_tag.setBounds(50,50,300,40);
+		bio_tag.setHorizontalAlignment(JLabel.CENTER);
+		bio_tag.setOpaque(true);
+		rgs_container.add(bio_tag);
+		
+		JTextArea bio_text = new JTextArea();
+		bio_text.setLocation(50, 100);
+		bio_text.setSize(300,80);
+		rgs_container.add(bio_text);
+		
+		//label preferences
+		
+		JCheckBox opt_sweet = new JCheckBox("Dulce");
+		opt_sweet.setBounds(50, 200, 100, 40);
+		opt_sweet.setOpaque(true);
+		opt_sweet.setForeground(Color.red);
+		rgs_container.add(opt_sweet);
+		
+		JCheckBox opt_salty = new JCheckBox("Salado");
+		opt_salty.setBounds(150, 200, 100, 40);
+		rgs_container.add(opt_salty);
+		
+		JCheckBox opt_healty = new JCheckBox("Saludable");
+		opt_healty.setBounds(250, 200, 100, 40);
+		rgs_container.add(opt_healty);
+		
+		
+		//label terms 
+		JRadioButton accept_terms = new JRadioButton("Acepto los términos");
+		accept_terms.setBounds(50, 260, 180, 40);
+		rgs_container.add(accept_terms);
+		
+		JRadioButton reject_terms = new JRadioButton("Rechazo los términos");
+		reject_terms.setBounds(220, 260, 200, 40);
+		rgs_container.add(reject_terms);
+		
+		ButtonGroup terms = new ButtonGroup();
+		terms.add(accept_terms);
+		terms.add(reject_terms); 
+		
+		//combo 
+		String [] colonias = {"Camino real","Arcoiris","Villas del encanto","8 de octubre"};
+		
+		JComboBox colonias_combo = new JComboBox(colonias);
+		colonias_combo.setBounds(50, 300, 300, 50);
+		
+		rgs_container.add(colonias_combo); 
+		
+		JButton register_btn = new JButton("Crear cuenta");
+		register_btn.setBounds(50, 340, 300, 60);
+		rgs_container.add(register_btn);
+		
+		this.repaint();
 		
 	}
 
