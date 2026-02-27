@@ -35,6 +35,15 @@ public class Ventana extends JFrame{
 		this.getContentPane().setBackground(Color.black);
 		//this.setBounds(200,200,500,500);
 		
+		//this.login();
+		//this.registro();
+		
+		this.repaint();
+		
+	}
+	
+	public void login()
+	{
 		JPanel login_container = new JPanel();
 		login_container.setSize(400, 400);
 		login_container.setLocation(50, 50);
@@ -87,7 +96,9 @@ public class Ventana extends JFrame{
 		access_btn.setBounds(100, 350, 200, 40);
 		access_btn.setFont(new Font("Arial",Font.ITALIC,18));
 		login_container.add(access_btn);
-		
+	}
+	
+	public void registro() {
 		
 		JPanel rgs_container = new JPanel();
 		rgs_container.setBounds(500, 50, 400, 400);
@@ -153,11 +164,13 @@ public class Ventana extends JFrame{
 		JButton register_btn = new JButton("Crear cuenta");
 		register_btn.setBounds(50, 340, 300, 60);
 		rgs_container.add(register_btn);
-		
-		this.repaint();
+	}
+	
+	public void users()
+	{
 		
 	}
-
+	
 }
 
 
