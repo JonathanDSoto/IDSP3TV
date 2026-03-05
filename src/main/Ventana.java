@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -22,7 +24,7 @@ public class Ventana extends JFrame{
 		
 		//CONFIGURACIONES BÁSICAS
 		this.setVisible(true);
-		this.setSize(1000, 500);
+		this.setSize(1000, 600);
 		//this.setLocation(200, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(200,200));
@@ -37,6 +39,7 @@ public class Ventana extends JFrame{
 		
 		//this.login();
 		//this.registro();
+		this.users();
 		
 		this.repaint();
 		
@@ -168,7 +171,34 @@ public class Ventana extends JFrame{
 	
 	public void users()
 	{
+		JPanel panel_users = new JPanel();
+		panel_users.setSize(900, 500);
+		panel_users.setLocation(50, 50);
+		panel_users.setBackground(Color.decode("#DDDEA6"));
+		panel_users.setLayout(null);
+		this.add(panel_users);
 		
+		String [] table_head = {"No. Control","Nombre","Apellidos","Correo electrónico","Semestre","Carrera","Acciones"};
+		
+		Object [][] table_body = {
+			    {"20231001","Carlos","Ramírez López","carlos.ramirez@correo.com","3","Ingeniería en Sistemas Computacionales","Editar"},
+			    {"20231002","María","González Pérez","maria.gonzalez@correo.com","5","Ingeniería Industrial","Editar"},
+			    {"20231003","Luis","Hernández Torres","luis.hernandez@correo.com","1","Licenciatura en Administración","Editar"},
+			    {"20231004","Ana","Martínez Ruiz","ana.martinez@correo.com","7","Ingeniería Civil","Editar"},
+			    {"20231005","Jorge","Sánchez Morales","jorge.sanchez@correo.com","4","Ingeniería Mecatrónica","Editar"},
+			    {"20231006","Fernanda","Castillo Díaz","fernanda.castillo@correo.com","2","Licenciatura en Psicología","Editar"},
+			    {"20231007","Diego","Vargas Romero","diego.vargas@correo.com","6","Ingeniería en Tecnologías de la Información","Editar"}
+			};
+		
+		JTable studens = new JTable(table_body,table_head);
+		
+		JScrollPane final_table = new JScrollPane(studens);
+		final_table.setSize(700,150);
+		final_table.setLocation(100, 100);
+		
+		panel_users.add(final_table);
+		
+		panel_users.repaint();
 	}
 	
 }
