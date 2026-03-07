@@ -3,13 +3,23 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.Iterator;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -22,9 +32,8 @@ public class Ventana extends JFrame{
 
 	public Ventana() {
 		
-		//CONFIGURACIONES BÁSICAS
-		this.setVisible(true);
-		this.setSize(1000, 600);
+		//CONFIGURACIONES BÁSICAS 
+		this.setSize(1000, 650);
 		//this.setLocation(200, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(200,200));
@@ -36,11 +45,54 @@ public class Ventana extends JFrame{
 		//this.setOpacity(1);
 		this.getContentPane().setBackground(Color.black);
 		//this.setBounds(200,200,500,500);
+
+		
+		try {
+			
+			Image iconImage = ImageIO.read(getClass().getResource("/images/8152506.png"));
+		
+			 
+	        this.setIconImage(iconImage);
+	        
+	        
+		} catch (IOException e) {
+			 
+			e.printStackTrace();
+		}
+        
+        
+		
+		JMenuBar barra = new JMenuBar();
+		this.setJMenuBar(barra);
+		
+		JMenu menu1 = new JMenu("Archivo");
+		barra.add(menu1);
+		
+		JMenuItem opt1_mi = new JMenuItem("Abrir");
+		menu1.add(opt1_mi);
+		
+		JMenuItem opt2_mi = new JMenuItem("Nuevo");
+		menu1.add(opt2_mi);
+		
+		JMenuItem opt3_mi = new JMenuItem("Cerrar");
+		menu1.add(opt3_mi);
+		
+		menu1.addSeparator();
+		
+		JMenu menu2 = new JMenu("Guardar");
+		menu1.add(menu2);
+		
+		JMenuItem opt4_mi = new JMenuItem("Guardar");
+		menu2.add(opt4_mi);
+		
+		JMenuItem opt5_mi = new JMenuItem("Guardar como");
+		menu2.add(opt5_mi);
 		
 		//this.login();
 		//this.registro();
-		this.users();
+		this.calculadora();
 		
+		this.setVisible(true);
 		this.repaint();
 		
 	}
@@ -201,6 +253,45 @@ public class Ventana extends JFrame{
 		panel_users.repaint();
 	}
 	
+	public void calculadora()
+	{
+		JPanel panel_users = new JPanel();
+		panel_users.setSize(500, 700);
+		panel_users.setLocation(250, 50);
+		panel_users.setBackground(Color.decode("#DDDEA6"));
+		panel_users.setLayout(null);
+		this.add(panel_users);
+		
+		JLabel field = new JLabel("180.00");
+		field.setSize(480, 40);
+		field.setLocation(10, 10);
+		field.setOpaque(true);
+		field.setBackground(Color.white);
+		field.setFont(new Font("Arial",Font.BOLD,22));
+		field.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+		panel_users.add(field);
+		
+		int cor_x = 30, cor_y = 60;
+		String [] botones = {"CE","","","","7","8","9","/","4","5","6","*","1","2","3","+","0",".","-","="};
+		
+		for (int i = 0; i < 20; i++) {
+			
+			JButton ce = new JButton(botones[i]);
+			ce.setSize(100, 100);
+			ce.setLocation(cor_x, cor_y);
+			
+			cor_x += 110;
+			panel_users.add(ce);
+			
+			if( cor_x >= 420) {
+				cor_x = 30;
+				cor_y += 110;
+			}
+		}
+		
+		
+		
+	}
 }
 
 
