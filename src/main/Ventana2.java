@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
+import javax.swing.JRadioButton;
 
 public class Ventana2 {
 
@@ -44,45 +45,19 @@ public class Ventana2 {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.LEFT);
-		panel.setBackground(new Color(147, 127, 251));
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		
-		JLabel lblNewLabel_1 = new JLabel("Registro de usuarios");
-		panel.add(lblNewLabel_1);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(18, 237, 145));
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel_3 = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEADING);
-		flowLayout.setVgap(15);
-		flowLayout.setHgap(15);
-		panel_1.add(panel_3, BorderLayout.WEST);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		panel_3.add(btnNewButton_1);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		panel_3.add(lblNewLabel);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(18, 237, 145));
-		panel_1.add(panel_4, BorderLayout.CENTER);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(37, 189, 243));
-		frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("New button");
-		panel_2.add(btnNewButton);
+		btnNewButton.setBounds(184, 127, 117, 29);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(42, 127, 117, 29);
+		frame.getContentPane().add(btnNewButton_1);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+		rdbtnNewRadioButton.setBounds(37, 57, 141, 23);
+		frame.getContentPane().add(rdbtnNewRadioButton);
 	}
-
 }
