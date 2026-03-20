@@ -99,7 +99,7 @@ public class Ventana extends JFrame{
 		menu2.add(opt5_mi);
 		
 		this.login();
-		this.registro();
+		//this.registro();
 		//this.calculadora_layout();
 		//this.pintar();
 		
