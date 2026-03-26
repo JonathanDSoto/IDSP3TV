@@ -30,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -37,40 +38,29 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class Ventana extends JFrame{
 
 	public Ventana() {
 		
 		//CONFIGURACIONES BÁSICAS 
-		this.setSize(1000, 700);
-		//this.setLocation(200, 200);
+		this.setSize(1000, 620); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(200,200));
 		this.setMaximumSize(new Dimension(1000,800));
 		this.setLocationRelativeTo(null);
 		this.setTitle("Hola");
-		this.setLayout(null);
-		//this.setBackground(Color.red);
-		//this.setOpacity(1);
-		this.getContentPane().setBackground(Color.black);
-		//this.setBounds(200,200,500,500);
+		this.setLayout(null); 
+		this.getContentPane().setBackground(Color.gray); 
 
 		
 		try {
-			
 			Image iconImage = ImageIO.read(getClass().getResource("/images/8152506.png"));
-		
-			 
 	        this.setIconImage(iconImage);
-	        
-	        
 		} catch (IOException e) {
-			 
 			e.printStackTrace();
 		}
-        
-        
 		
 		JMenuBar barra = new JMenuBar();
 		this.setJMenuBar(barra);
@@ -98,165 +88,182 @@ public class Ventana extends JFrame{
 		JMenuItem opt5_mi = new JMenuItem("Guardar como");
 		menu2.add(opt5_mi);
 		
-		this.login();
-		//this.registro();
-		//this.calculadora_layout();
-		//this.pintar();
+		this.router("login");
 		
 		this.setVisible(true);
 		this.repaint();
 		
 	}
 	
-	public void pintar()
+	public void router(String target)
 	{
-		JPanel pane = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                
-                Graphics2D g2d = (Graphics2D) g;
-                
-                g2d.drawLine(0, 0, 1000, 700);
-                
-                g2d.setColor(Color.orange);
-                g2d.drawOval(100, 100, 150, 50);
-                
-                g2d.setStroke(new BasicStroke(3));
-                g2d.setColor(Color.magenta);
-                g2d.drawPolygon(new int[] {300,100,500},new int[] {100,300,300},3);
-                
-                g2d.drawRect(250, 300, 100, 100);
-                
-                g2d.drawRoundRect(500,150,100,100,10,10);
-                
-                g2d.drawArc(400, 100, 100, 100, 0, 90);
-                
-                g2d.setFont(new Font("Arial",Font.BOLD,22));
-                g2d.drawString("Hola", 100, 100);
-               
-                g2d.setColor(Color.black);
-                g2d.fillOval(500, 50, 50, 50);
-                
-                g2d.fillPolygon(new int[] {500,300,700},new int[] {300,500,500},3);
-                
-                g2d.fillRect(550, 500, 100, 100);
-                
-                g2d.setColor(Color.orange);
-                g2d.fillRoundRect(500,500,100,100,10,10);
-                
-                g2d.fillArc(450, 150, 100, 100, 0, 300);
-                
-                BufferedImage image;
-				try {
-					
-					image = ImageIO.read(new File("src/images/aguacero.png"));
-					g2d.drawImage(image, 0, 0, null);
-					
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-                
-                
-                
-            }
-        };
-        pane.setSize(1000,700);
-        pane.setLocation(0, 0);
-        this.add(pane);
+		this.getContentPane().removeAll();
+		
+		if(target.equals("login"))
+			this.login();
+		
+		if(target.equals("registro"))
+			this.registro();
+		
+		this.repaint();
+		this.revalidate();
 	}
 	
 	public void login()
 	{
-		JPanel login_container = new JPanel();
-		login_container.setSize(400, 400);
-		login_container.setLocation(50, 50);
-		login_container.setBackground(Color.decode("#B979E8"));
-		login_container.setLayout(null);
-		this.add(login_container);
 		
-		//AÑADIENDO ELEMENTOS
-		JLabel tag_title = new JLabel();
-		tag_title.setText("Bienvenido");
-		tag_title.setSize(150, 30);
-		tag_title.setLocation(125,20);
-		tag_title.setBackground(Color.white);
-		tag_title.setOpaque(true);
-		tag_title.setFont(new Font("Arial",Font.PLAIN,22));
-		tag_title.setVerticalAlignment(JLabel.CENTER);
-		tag_title.setHorizontalAlignment(JLabel.CENTER);
-		login_container.add(tag_title);
+		JTextField textField;
+		JPasswordField passwordField;
 		
-		JLabel tag_email = new JLabel("Correo electrónico");
-		tag_email.setBounds(61,120,150, 30); 
-		tag_email.setBackground(Color.white);
-		tag_email.setOpaque(true);
-		login_container.add(tag_email);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255)); 
+		panel.setLocation(0, 0);
+		panel.setLayout(null);
+		panel.setSize(1000, 600); 
 		
-		JTextField email_input = new JTextField();
-		email_input.setSize(280, 40);
-		email_input.setLocation(60, 150);
-		login_container.add(email_input);
+		JLabel lblNewLabel = new JLabel("UABCS - DASC\n");
+		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setFont(new Font("Kefa", Font.PLAIN, 24));
+		lblNewLabel.setBounds(107, 35, 210, 26);
+		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(lblNewLabel);
 		
-		JLabel tag_password = new JLabel("Contraseña");
-		tag_password.setBounds(61,200,150, 30); 
-		tag_password.setBackground(Color.white);
-		tag_password.setOpaque(true);
-		login_container.add(tag_password);
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setBounds(36, 186, 353, 81);
+		lblNewLabel_8.setBorder(BorderFactory.createTitledBorder("Correo electrónico"));
+		panel.add(lblNewLabel_8);
 		
-		JPasswordField password = new JPasswordField();
-		password.setSize(280, 40);
-		password.setLocation(60, 230);
-		login_container.add(password);
+		textField = new JTextField();
+		textField.setBackground(new Color(218, 230, 225));
+		textField.setBounds(49, 211, 328, 42);
+		panel.add(textField);
+		textField.setBorder(new LineBorder(new Color(91, 253, 255), 1, true));
+		textField.setBorder(null);
+		textField.setColumns(10);
 		
-		JCheckBox rememberme = new JCheckBox("Hola");
-		rememberme.setSize(140, 40);
-		rememberme.setLocation(60, 300); 
-		//rememberme.setOpaque(false); 
-		login_container.add(rememberme);
+		passwordField = new JPasswordField();
+		passwordField.setBackground(new Color(218, 230, 225));
+		passwordField.setBounds(49, 300, 295, 42);
+		panel.add(passwordField);
 		
-		JButton access_btn = new JButton();
-		access_btn.setText("Acceder"); 
-		access_btn.setBounds(100, 350, 200, 40);
-		access_btn.setFont(new Font("Arial",Font.ITALIC,18));
-		login_container.add(access_btn);
+		JButton btnNewButton = new JButton("Acceder");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setOpaque(true);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String passText = new String(passwordField.getPassword());
+				Boolean flag1 = false, flag2 = false;
+				
+				
+				if( passText.equals("") ) {
+					
+					passwordField.setBorder(BorderFactory.createLineBorder(Color.red,2));
+					
+				}else {
+					
+					passwordField.setBorder(BorderFactory.createLineBorder(Color.green,2));
+					flag1 = true;
+				}
+				
+				
+				if(textField.getText().equals("")) {
+					textField.setBorder(BorderFactory.createLineBorder(Color.red,2));
+				}else {
+					
+					textField.setBorder(BorderFactory.createLineBorder(Color.green,2));
+					flag2 = true;
+				}
+				
+				if(flag1 && flag2) {
+					
+					if(textField.getText().equals("fake@mail.com") ) {
+						if(passText.equals("12345")) {
+							
+							JOptionPane.showMessageDialog(null, "Bienvenido.");
+							
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al acceder","verifique su información",JOptionPane.WARNING_MESSAGE);
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Error al acceder","verifique su información",JOptionPane.WARNING_MESSAGE);
+					}
+					
+					
+				}
+				
+			}
+		});
+		btnNewButton.setBounds(36, 413, 341, 37);
+		panel.add(btnNewButton);
 		
-		access_btn.addActionListener(new ActionListener() {
+		JLabel lblNewLabel_1 = new JLabel("Sabiduría como meta, patria como destino ");
+		lblNewLabel_1.setBounds(69, 73, 308, 16);
+		lblNewLabel_1.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		
+		lblNewLabel_6.setIcon(new ImageIcon(this.getClass().getResource("/images/redd-francisco-9o8YdYGTT64-unsplash.jpg")));
+		lblNewLabel_6.setBounds(531, 6, 383, 494);
+		lblNewLabel_6.setBorder(BorderFactory.createLineBorder(Color.white,5,true));
+		panel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Ingresa al panel administrador");
+		lblNewLabel_2_1.setForeground(Color.BLACK);
+		lblNewLabel_2_1.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+		lblNewLabel_2_1.setBounds(49, 109, 340, 39);
+		lblNewLabel_2_1.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(lblNewLabel_2_1);
+		
+		JLabel lblNewLabel_8_1 = new JLabel("");
+		lblNewLabel_8_1.setBorder(BorderFactory.createTitledBorder("Contraseña"));
+		lblNewLabel_8_1.setBounds(36, 279, 353, 81);
+		panel.add(lblNewLabel_8_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		
+		lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("/images/hidden.png")));
+		lblNewLabel_2.setBounds(351, 315, 24, 16);
+		panel.add(lblNewLabel_2);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Recordar contraseña");
+		chckbxNewCheckBox.setBounds(36, 372, 180, 23);
+		panel.add(chckbxNewCheckBox);
+		
+		JLabel lblNewLabel_3 = new JLabel("¿Aún no tienes cuenta?");
+		lblNewLabel_3.setBounds(225, 462, 152, 16);
+		panel.add(lblNewLabel_3);
+		
+		JButton btnNewButton2 = new JButton("Crea una aquí");
+		btnNewButton2.setBackground(new Color(0, 0, 0));
+		btnNewButton2.setOpaque(true);
+		btnNewButton2.setForeground(new Color(0, 0, 0));
+		btnNewButton2.setBounds(205, 490, 200, 20);
+		btnNewButton2.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				router("registro");
 				
-				String email = email_input.getText();
-				
-				if(email.equals("")) {
-					System.out.println("vacio");
-					
-					email_input.setBorder(BorderFactory.createLineBorder(Color.red,3));
-					
-				}else
-					email_input.setBorder(BorderFactory.createLineBorder(Color.green,3));
-				
-				
-			}
-		}); 
+			}});
 		
+		panel.add(btnNewButton2);
+		
+		this.add(panel);
 	}
 	
 	public void registro() {
 		
 		JPanel rgs_container = new JPanel();
-		rgs_container.setBounds(500, 50, 400, 400);
+		rgs_container.setBounds(500, 50, 400, 600);
 		rgs_container.setOpaque(true);
 		rgs_container.setBackground(Color.green);
 		rgs_container.setLayout(null);
 		this.add(rgs_container);
-		
-		//titulo 
-		
-		//label name
-		//input name
+
 		
 		JLabel bio_tag = new JLabel("BIO");
 		bio_tag.setBounds(50,50,300,40);
@@ -310,6 +317,14 @@ public class Ventana extends JFrame{
 		JButton register_btn = new JButton("Crear cuenta");
 		register_btn.setBounds(50, 340, 300, 60);
 		rgs_container.add(register_btn);
+		
+		JButton login_btn = new JButton("¿Ya tienes cuenta?");
+		login_btn.setBounds(40, 390, 300, 60);
+		rgs_container.add(login_btn);
+		
+		login_btn.addActionListener(e->{
+			this.router("login");
+		});
 	}
 	
 	public void users()
@@ -344,98 +359,7 @@ public class Ventana extends JFrame{
 		panel_users.repaint();
 	}
 	
-	public void calculadora()
-	{
-		JPanel panel_users = new JPanel();
-		panel_users.setSize(500, 700);
-		panel_users.setLocation(250, 50);
-		panel_users.setBackground(Color.decode("#DDDEA6"));
-		panel_users.setLayout(null);
-		this.add(panel_users);
-		
-		JLabel field = new JLabel("180.00");
-		field.setSize(480, 40);
-		field.setLocation(10, 10);
-		field.setOpaque(true);
-		field.setBackground(Color.white);
-		field.setFont(new Font("Arial",Font.BOLD,22));
-		field.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-		panel_users.add(field);
-		
-		int cor_x = 30, cor_y = 60;
-		String [] botones = {"CE","","","","7","8","9","/","4","5","6","*","1","2","3","+","0",".","-","="};
-		
-		for (int i = 0; i < 20; i++) {
-			
-			JButton ce = new JButton(botones[i]);
-			ce.setSize(100, 100);
-			ce.setLocation(cor_x, cor_y);
-			
-			cor_x += 110;
-			panel_users.add(ce);
-			
-			if( cor_x >= 420) {
-				cor_x = 30;
-				cor_y += 110;
-			}
-		}
-		
-		
-		
-	}
 	
-	public void calculadora_layout() {
-		
-		JPanel panel_users = new JPanel();
-		panel_users.setSize(500, 700);
-		panel_users.setLocation(250, 50);
-		panel_users.setBackground(Color.decode("#DDDEA6"));
-		
-		BorderLayout mi_layout1 = new BorderLayout();
-		mi_layout1.setVgap(20); 
-		
-		panel_users.setLayout(mi_layout1);
-		this.add(panel_users);
-	
-		JLabel field = new JLabel("180.00");
-		field.setOpaque(true);
-		field.setBackground(Color.white);
-		field.setFont(new Font("Arial",Font.BOLD,22));
-		field.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-		panel_users.add(field,BorderLayout.NORTH);
-			
-		JPanel centro = new JPanel();
-		centro.setBackground(Color.red);
-		centro.setLayout(new GridLayout(4,3));
-		panel_users.add(centro,BorderLayout.CENTER);
-		
-		String [] botones = {"9","8","7","6","5","4","3","2","1","0",".",""};
-		
-		for (int i = 0; i < botones.length; i++) {
-			
-			JButton ce = new JButton(botones[i]);
-			ce.setSize(100, 100);  
-			ce.setFont(new Font("Arial",Font.BOLD,22));
-			centro.add(ce); 
-			 
-		}
-		
-		JPanel sidebar = new JPanel();
-		sidebar.setBackground(Color.gray);
-		sidebar.setLayout(new GridLayout(6,1));
-		panel_users.add(sidebar,BorderLayout.EAST);
-		
-		String [] botones2 = {"+","-","*","/","=","CE"};
-		
-		for (int i = 0; i < botones2.length; i++) {
-			
-			JButton ce = new JButton(botones2[i]);
-			ce.setSize(100, 100);  
-			ce.setFont(new Font("Arial",Font.BOLD,22));
-			sidebar.add(ce); 
-			 
-		} 
-	}
 	
 	
 }
