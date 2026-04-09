@@ -62,31 +62,7 @@ public class Ventana extends JFrame{
 			e.printStackTrace();
 		}
 		
-		JMenuBar barra = new JMenuBar();
-		this.setJMenuBar(barra);
-		
-		JMenu menu1 = new JMenu("Archivo");
-		barra.add(menu1);
-		
-		JMenuItem opt1_mi = new JMenuItem("Abrir");
-		menu1.add(opt1_mi);
-		
-		JMenuItem opt2_mi = new JMenuItem("Nuevo");
-		menu1.add(opt2_mi);
-		
-		JMenuItem opt3_mi = new JMenuItem("Cerrar");
-		menu1.add(opt3_mi);
-		
-		menu1.addSeparator();
-		
-		JMenu menu2 = new JMenu("Guardar");
-		menu1.add(menu2);
-		
-		JMenuItem opt4_mi = new JMenuItem("Guardar");
-		menu2.add(opt4_mi);
-		
-		JMenuItem opt5_mi = new JMenuItem("Guardar como");
-		menu2.add(opt5_mi);
+		this.menu();
 		
 		this.router("login");
 		
@@ -104,6 +80,9 @@ public class Ventana extends JFrame{
 		
 		if(target.equals("registro"))
 			this.registro();
+		
+		if(target.equals("forgot"))
+			this.recuperarContrasena();
 		
 		this.repaint();
 		this.revalidate();
@@ -327,6 +306,25 @@ public class Ventana extends JFrame{
 		});
 	}
 	
+	public void recuperarContrasena() {
+		
+		JPanel rgs_container = new JPanel();
+		rgs_container.setBounds(500, 50, 400, 600);
+		rgs_container.setOpaque(true);
+		rgs_container.setBackground(Color.green);
+		rgs_container.setLayout(null);
+		this.add(rgs_container);
+
+		
+		JLabel bio_tag = new JLabel("OLVIDÉ MI CONTRASEÑA");
+		bio_tag.setBounds(50,50,300,40);
+		bio_tag.setHorizontalAlignment(JLabel.CENTER);
+		bio_tag.setOpaque(true);
+		rgs_container.add(bio_tag);
+		
+		 
+	}
+	
 	public void users()
 	{
 		JPanel panel_users = new JPanel();
@@ -359,7 +357,56 @@ public class Ventana extends JFrame{
 		panel_users.repaint();
 	}
 	
-	
+	public void menu()
+	{
+		JMenuBar barra = new JMenuBar();
+		this.setJMenuBar(barra);
+		
+		JMenu menu1 = new JMenu("Archivo");
+		barra.add(menu1);
+		
+		JMenuItem opt1_mi = new JMenuItem("Abrir");
+		menu1.add(opt1_mi);
+		
+		JMenuItem opt2_mi = new JMenuItem("Nuevo");
+		menu1.add(opt2_mi);
+		
+		JMenuItem opt3_mi = new JMenuItem("Cerrar");
+		menu1.add(opt3_mi);
+		
+		menu1.addSeparator();
+		
+		JMenu menu2 = new JMenu("Guardar");
+		menu1.add(menu2);
+		
+		JMenuItem opt4_mi = new JMenuItem("Guardar");
+		menu2.add(opt4_mi);
+		
+		JMenuItem opt5_mi = new JMenuItem("Guardar como");
+		menu2.add(opt5_mi);
+		
+		JMenu menu3 = new JMenu("Cuenta");
+		barra.add(menu3);
+		
+		JMenuItem opt_access = new JMenuItem("Acceder");
+		opt_access.addActionListener(e ->{
+			this.router("login");
+		});
+		menu3.add(opt_access);
+		
+		JMenuItem opt_register = new JMenuItem("Registro");
+		opt_register.addActionListener(e ->{
+			this.router("registro");
+		});
+		menu3.add(opt_register);
+		
+		JMenuItem opt_forgot = new JMenuItem("Recuperar");
+		opt_forgot.addActionListener(e ->{
+			this.router("forgot");
+		});
+		menu3.add(opt_forgot);
+		
+	}
 	
 	
 }
