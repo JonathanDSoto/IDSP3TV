@@ -1,22 +1,12 @@
-package main;
+package views;
 
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -27,69 +17,42 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-public class Ventana extends JFrame{
+import constrollers.HomeController;
 
-	public Ventana() {
-		
-		//CONFIGURACIONES BÁSICAS 
-		this.setSize(1000, 620); 
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setMinimumSize(new Dimension(200,200));
-		this.setMaximumSize(new Dimension(1000,800));
-		this.setLocationRelativeTo(null);
-		this.setTitle("Hola");
-		this.setLayout(null); 
-		this.getContentPane().setBackground(Color.gray); 
+public class AuthView {
 
+	public AuthView() {
 		
-		try {
-			Image iconImage = ImageIO.read(getClass().getResource("/images/8152506.png"));
-	        this.setIconImage(iconImage);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		this.menu();
-		
-		this.router("login");
-		
-		this.setVisible(true);
-		this.repaint();
-		
-	}
-	
-	public void router(String target)
-	{
-		this.getContentPane().removeAll();
-		
-		if(target.equals("login"))
-			this.login();
-		
-		if(target.equals("registro"))
-			this.registro();
-		
-		if(target.equals("forgot"))
-			this.recuperarContrasena();
-		
-		this.repaint();
-		this.revalidate();
 	}
 	
 	public void login()
 	{
+		JFrame ventana = new JFrame();
+		
+		ventana.setSize(1000, 620); 
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setMinimumSize(new Dimension(200,200));
+		ventana.setMaximumSize(new Dimension(1000,800));
+		ventana.setLocationRelativeTo(null);
+		ventana.setTitle("Hola");
+		ventana.setLayout(null); 
+		ventana.getContentPane().setBackground(Color.gray); 
+
+		/*
+		try {
+			Image iconImage = ImageIO.read(getClass().getResource("/images/8152506.png"));
+			ventana.setIconImage(iconImage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
 		
 		JTextField textField;
 		JPasswordField passwordField;
@@ -162,6 +125,10 @@ public class Ventana extends JFrame{
 							
 							JOptionPane.showMessageDialog(null, "Bienvenido.");
 							
+							ventana.dispose();
+							HomeController hc = new HomeController();
+							hc.home();
+							
 						}else {
 							JOptionPane.showMessageDialog(null, "Error al acceder","verifique su información",JOptionPane.WARNING_MESSAGE);
 						}
@@ -203,9 +170,11 @@ public class Ventana extends JFrame{
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		
-		lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("/images/hidden.png")));
-		lblNewLabel_2.setBounds(351, 315, 24, 16);
-		panel.add(lblNewLabel_2);
+		/*
+			lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("/images/hidden.png")));
+			lblNewLabel_2.setBounds(351, 315, 24, 16);
+			panel.add(lblNewLabel_2);
+		*/
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Recordar contraseña");
 		chckbxNewCheckBox.setBounds(36, 372, 180, 23);
@@ -224,24 +193,38 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				router("registro");
+				
+				registro();
+				ventana.dispose();
+				
 				
 			}});
 		
 		panel.add(btnNewButton2);
 		
-		this.add(panel);
+		ventana.add(panel);
+		ventana.setVisible(true);
 	}
 	
-	public void registro() {
+	public void registro()
+	{
+		JFrame ventana = new JFrame();
+		
+		ventana.setSize(1000, 620); 
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setMinimumSize(new Dimension(200,200));
+		ventana.setMaximumSize(new Dimension(1000,800));
+		ventana.setLocationRelativeTo(null);
+		ventana.setTitle("Hola");
+		ventana.setLayout(null); 
+		ventana.getContentPane().setBackground(Color.gray);
 		
 		JPanel rgs_container = new JPanel();
 		rgs_container.setBounds(500, 50, 400, 600);
 		rgs_container.setOpaque(true);
 		rgs_container.setBackground(Color.green);
 		rgs_container.setLayout(null);
-		this.add(rgs_container);
+		ventana.add(rgs_container);
 
 		
 		JLabel bio_tag = new JLabel("BIO");
@@ -302,125 +285,11 @@ public class Ventana extends JFrame{
 		rgs_container.add(login_btn);
 		
 		login_btn.addActionListener(e->{
-			this.router("login");
+			
+			login();
+			ventana.dispose();
 		});
+		
+		ventana.setVisible(true);
 	}
-	
-	public void recuperarContrasena() {
-		
-		JPanel rgs_container = new JPanel();
-		rgs_container.setBounds(500, 50, 400, 600);
-		rgs_container.setOpaque(true);
-		rgs_container.setBackground(Color.green);
-		rgs_container.setLayout(null);
-		this.add(rgs_container);
-
-		
-		JLabel bio_tag = new JLabel("OLVIDÉ MI CONTRASEÑA");
-		bio_tag.setBounds(50,50,300,40);
-		bio_tag.setHorizontalAlignment(JLabel.CENTER);
-		bio_tag.setOpaque(true);
-		rgs_container.add(bio_tag);
-		
-		 
-	}
-	
-	public void users()
-	{
-		JPanel panel_users = new JPanel();
-		panel_users.setSize(900, 500);
-		panel_users.setLocation(50, 50);
-		panel_users.setBackground(Color.decode("#DDDEA6"));
-		panel_users.setLayout(null);
-		this.add(panel_users);
-		
-		String [] table_head = {"No. Control","Nombre","Apellidos","Correo electrónico","Semestre","Carrera","Acciones"};
-		
-		Object [][] table_body = {
-			    {"20231001","Carlos","Ramírez López","carlos.ramirez@correo.com","3","Ingeniería en Sistemas Computacionales","Editar"},
-			    {"20231002","María","González Pérez","maria.gonzalez@correo.com","5","Ingeniería Industrial","Editar"},
-			    {"20231003","Luis","Hernández Torres","luis.hernandez@correo.com","1","Licenciatura en Administración","Editar"},
-			    {"20231004","Ana","Martínez Ruiz","ana.martinez@correo.com","7","Ingeniería Civil","Editar"},
-			    {"20231005","Jorge","Sánchez Morales","jorge.sanchez@correo.com","4","Ingeniería Mecatrónica","Editar"},
-			    {"20231006","Fernanda","Castillo Díaz","fernanda.castillo@correo.com","2","Licenciatura en Psicología","Editar"},
-			    {"20231007","Diego","Vargas Romero","diego.vargas@correo.com","6","Ingeniería en Tecnologías de la Información","Editar"}
-			};
-		
-		JTable studens = new JTable(table_body,table_head);
-		
-		JScrollPane final_table = new JScrollPane(studens);
-		final_table.setSize(700,150);
-		final_table.setLocation(100, 100);
-		
-		panel_users.add(final_table);
-		
-		panel_users.repaint();
-	}
-	
-	public void menu()
-	{
-		JMenuBar barra = new JMenuBar();
-		this.setJMenuBar(barra);
-		
-		JMenu menu1 = new JMenu("Archivo");
-		barra.add(menu1);
-		
-		JMenuItem opt1_mi = new JMenuItem("Abrir");
-		menu1.add(opt1_mi);
-		
-		JMenuItem opt2_mi = new JMenuItem("Nuevo");
-		menu1.add(opt2_mi);
-		
-		JMenuItem opt3_mi = new JMenuItem("Cerrar");
-		menu1.add(opt3_mi);
-		
-		menu1.addSeparator();
-		
-		JMenu menu2 = new JMenu("Guardar");
-		menu1.add(menu2);
-		
-		JMenuItem opt4_mi = new JMenuItem("Guardar");
-		menu2.add(opt4_mi);
-		
-		JMenuItem opt5_mi = new JMenuItem("Guardar como");
-		menu2.add(opt5_mi);
-		
-		JMenu menu3 = new JMenu("Cuenta");
-		barra.add(menu3);
-		
-		JMenuItem opt_access = new JMenuItem("Acceder");
-		opt_access.addActionListener(e ->{
-			this.router("login");
-		});
-		menu3.add(opt_access);
-		
-		JMenuItem opt_register = new JMenuItem("Registro");
-		opt_register.addActionListener(e ->{
-			this.router("registro");
-		});
-		menu3.add(opt_register);
-		
-		JMenuItem opt_forgot = new JMenuItem("Recuperar");
-		opt_forgot.addActionListener(e ->{
-			this.router("forgot");
-		});
-		menu3.add(opt_forgot);
-		
-	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
