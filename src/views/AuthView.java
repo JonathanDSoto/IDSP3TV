@@ -18,8 +18,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import models.AuthModel;
@@ -193,85 +195,284 @@ public class AuthView {
 	public void register()
 	{
 		JFrame ventana = new JFrame();
-		ventana.setSize(1000, 620); 
+		ventana.setSize(1000, 640);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setMinimumSize(new Dimension(200,200));
-		ventana.setMaximumSize(new Dimension(1000,800));
 		ventana.setLocationRelativeTo(null);
-		ventana.setTitle("Hola");
+		ventana.setMinimumSize(new Dimension(200,200));
+		ventana.setMaximumSize(new Dimension(1200,800));
+		ventana.setTitle("Hola"); 
+		ventana.getContentPane().setBackground(Color.decode("#C8DEBD"));
 		ventana.setLayout(null); 
-		ventana.getContentPane().setBackground(Color.gray);
-		
-		JPanel rgs_container = new JPanel();
-		rgs_container.setBounds(500, 50, 400, 600);
-		rgs_container.setOpaque(true);
-		rgs_container.setBackground(Color.green);
-		rgs_container.setLayout(null);
 
-		
-		JLabel bio_tag = new JLabel("BIO");
-		bio_tag.setBounds(50,50,300,40);
-		bio_tag.setHorizontalAlignment(JLabel.CENTER);
-		bio_tag.setOpaque(true);
-		rgs_container.add(bio_tag);
-		
-		JTextArea bio_text = new JTextArea();
-		bio_text.setLocation(50, 100);
-		bio_text.setSize(300,80);
-		rgs_container.add(bio_text);
-		
-		//label preferences
-		
-		JCheckBox opt_sweet = new JCheckBox("Dulce");
-		opt_sweet.setBounds(50, 200, 100, 40);
-		opt_sweet.setOpaque(true);
-		opt_sweet.setForeground(Color.red);
-		rgs_container.add(opt_sweet);
-		
-		JCheckBox opt_salty = new JCheckBox("Salado");
-		opt_salty.setBounds(150, 200, 100, 40);
-		rgs_container.add(opt_salty);
-		
-		JCheckBox opt_healty = new JCheckBox("Saludable");
-		opt_healty.setBounds(250, 200, 100, 40);
-		rgs_container.add(opt_healty);
-		
-		
-		//label terms 
-		JRadioButton accept_terms = new JRadioButton("Acepto los términos");
-		accept_terms.setBounds(50, 260, 180, 40);
-		rgs_container.add(accept_terms);
-		
-		JRadioButton reject_terms = new JRadioButton("Rechazo los términos");
-		reject_terms.setBounds(220, 260, 200, 40);
-		rgs_container.add(reject_terms);
-		
-		ButtonGroup terms = new ButtonGroup();
-		terms.add(accept_terms);
-		terms.add(reject_terms); 
-		
-		//combo 
-		String [] colonias = {"Camino real","Arcoiris","Villas del encanto","8 de octubre"};
-		
-		JComboBox colonias_combo = new JComboBox(colonias);
-		colonias_combo.setBounds(50, 300, 300, 50);
-		
-		rgs_container.add(colonias_combo); 
-		
-		JButton register_btn = new JButton("Crear cuenta");
-		register_btn.setBounds(50, 340, 300, 60);
-		rgs_container.add(register_btn);
-		
-		JButton login_btn = new JButton("¿Ya tienes cuenta?");
-		login_btn.setBounds(40, 390, 300, 60);
-		rgs_container.add(login_btn);
-		
-		login_btn.addActionListener(e->{
-			
-		});
-		
-		ventana.add(rgs_container);
-		ventana.setVisible(true);
+	    JPanel panel = new JPanel();
+	    panel.setBackground(Color.WHITE);
+	    panel.setLayout(null);
+	    panel.setBounds(0, 0, 1000, 600);
+
+	    // Título principal
+	    JLabel titulo = new JLabel("UABCS – DASC");
+	    titulo.setForeground(Color.BLACK);
+	    titulo.setFont(new Font("Kefa", Font.PLAIN, 24));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setBounds(110, 30, 260, 35);
+	    panel.add(titulo);
+
+	    JLabel subtitulo = new JLabel("Crea tu cuenta de usuario");
+	    subtitulo.setForeground(Color.BLACK);
+	    subtitulo.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+	    subtitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    subtitulo.setBounds(75, 90, 340, 35);
+	    panel.add(subtitulo);
+
+	    JLabel lema = new JLabel("Sabiduría como meta, patria como destino");
+	    lema.setHorizontalAlignment(SwingConstants.CENTER);
+	    lema.setBounds(70, 65, 340, 20);
+	    panel.add(lema);
+
+	    // ---------- Campo Nombre ----------
+	    JPanel nombrePanel = new JPanel(null);
+	    nombrePanel.setBackground(Color.WHITE);
+	    nombrePanel.setBorder(BorderFactory.createTitledBorder("Nombre completo"));
+	    nombrePanel.setBounds(45, 145, 360, 75);
+
+	    JTextField nombreField = new JTextField();
+	    nombreField.setBounds(18, 28, 325, 35);
+	    nombreField.setBackground(new Color(218, 230, 225));
+	    nombreField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	    nombrePanel.add(nombreField);
+
+	    panel.add(nombrePanel);
+
+	    // ---------- Campo Correo ----------
+	    JPanel correoPanel = new JPanel(null);
+	    correoPanel.setBackground(Color.WHITE);
+	    correoPanel.setBorder(BorderFactory.createTitledBorder("Correo electrónico"));
+	    correoPanel.setBounds(45, 230, 360, 75);
+
+	    JTextField correoField = new JTextField();
+	    correoField.setBounds(18, 28, 325, 35);
+	    correoField.setBackground(new Color(218, 230, 225));
+	    correoField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	    correoPanel.add(correoField);
+
+	    panel.add(correoPanel);
+
+	    // ---------- Campo Contraseña ----------
+	    JPanel passPanel = new JPanel(null);
+	    passPanel.setBackground(Color.WHITE);
+	    passPanel.setBorder(BorderFactory.createTitledBorder("Contraseña"));
+	    passPanel.setBounds(45, 315, 360, 75);
+
+	    JPasswordField passwordField = new JPasswordField();
+	    passwordField.setBounds(18, 28, 290, 35);
+	    passwordField.setBackground(new Color(218, 230, 225));
+	    passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	    passPanel.add(passwordField);
+
+	    JLabel iconoOjo = new JLabel();
+	    iconoOjo.setBounds(318, 36, 20, 20);
+	    try {
+	        iconoOjo.setIcon(new ImageIcon(this.getClass().getResource("/img/hidden.png")));
+	    } catch (Exception ex) {
+	        iconoOjo.setText("👁");
+	    }
+	    passPanel.add(iconoOjo);
+
+	    panel.add(passPanel);
+
+	    // ---------- Campo Biografía ----------
+	    JPanel bioPanel = new JPanel(null);
+	    bioPanel.setBackground(Color.WHITE);
+	    bioPanel.setBorder(BorderFactory.createTitledBorder("Biografía"));
+	    bioPanel.setBounds(45, 400, 360, 90);
+
+	    JTextArea bio = new JTextArea();
+	    bio.setLineWrap(true);
+	    bio.setWrapStyleWord(true);
+	    bio.setBackground(new Color(218, 230, 225));
+	    bio.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
+
+	    JScrollPane bioScroll = new JScrollPane(bio);
+	    bioScroll.setBounds(18, 25, 325, 50);
+	    bioPanel.add(bioScroll);
+
+	    panel.add(bioPanel);
+
+	    // ---------- Panel derecho ----------
+	    JPanel registerContainer = new JPanel();
+	    registerContainer.setLayout(null);
+	    registerContainer.setBounds(500, 60, 410, 470);
+	    registerContainer.setBackground(new Color(245, 247, 250));
+	    registerContainer.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 1, true));
+	    panel.add(registerContainer);
+
+	    JLabel infoRegistro = new JLabel("Completa tu registro");
+	    infoRegistro.setFont(new Font("Lucida Grande", Font.BOLD, 22));
+	    infoRegistro.setHorizontalAlignment(SwingConstants.CENTER);
+	    infoRegistro.setBounds(70, 25, 270, 30);
+	    registerContainer.add(infoRegistro);
+
+	    // Preferencias
+	    JLabel preferenciasLabel = new JLabel("Preferencias alimenticias");
+	    preferenciasLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+	    preferenciasLabel.setBounds(35, 80, 220, 20);
+	    registerContainer.add(preferenciasLabel);
+
+	    JCheckBox sweetOption = new JCheckBox("Dulce");
+	    sweetOption.setBounds(35, 110, 100, 25);
+	    sweetOption.setBackground(registerContainer.getBackground());
+	    sweetOption.setFocusPainted(false);
+	    registerContainer.add(sweetOption);
+
+	    JCheckBox saltyOption = new JCheckBox("Salado");
+	    saltyOption.setBounds(150, 110, 100, 25);
+	    saltyOption.setBackground(registerContainer.getBackground());
+	    saltyOption.setFocusPainted(false);
+	    registerContainer.add(saltyOption);
+
+	    JCheckBox healthyOption = new JCheckBox("Saludable");
+	    healthyOption.setBounds(265, 110, 110, 25);
+	    healthyOption.setBackground(registerContainer.getBackground());
+	    healthyOption.setFocusPainted(false);
+	    registerContainer.add(healthyOption);
+
+	    // Términos
+	    JLabel terminosLabel = new JLabel("Términos y condiciones");
+	    terminosLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+	    terminosLabel.setBounds(35, 160, 220, 20);
+	    registerContainer.add(terminosLabel);
+
+	    JRadioButton acceptTerms = new JRadioButton("Acepto los términos");
+	    acceptTerms.setBounds(35, 190, 160, 25);
+	    acceptTerms.setBackground(registerContainer.getBackground());
+	    acceptTerms.setFocusPainted(false);
+	    registerContainer.add(acceptTerms);
+
+	    JRadioButton rejectTerms = new JRadioButton("Rechazo los términos");
+	    rejectTerms.setBounds(210, 190, 170, 25);
+	    rejectTerms.setBackground(registerContainer.getBackground());
+	    rejectTerms.setFocusPainted(false);
+	    registerContainer.add(rejectTerms);
+
+	    ButtonGroup terms = new ButtonGroup();
+	    terms.add(acceptTerms);
+	    terms.add(rejectTerms);
+
+	    // ComboBox colonia
+	    JLabel coloniaLabel = new JLabel("Colonia");
+	    coloniaLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+	    coloniaLabel.setBounds(35, 240, 100, 20);
+	    registerContainer.add(coloniaLabel);
+
+	    String[] colonias = {"Camino Real", "La Fuente", "Villas del Encanto"};
+	    JComboBox<String> list = new JComboBox<>(colonias);
+	    list.setBounds(35, 270, 340, 35);
+	    list.setBackground(Color.WHITE);
+	    registerContainer.add(list);
+
+	    // Botón registrar
+	    JButton crearCuenta = new JButton("Crear cuenta");
+	    crearCuenta.setBounds(35, 335, 340, 42);
+	    crearCuenta.setBackground(Color.BLACK);
+	    crearCuenta.setForeground(Color.WHITE);
+	    crearCuenta.setFocusPainted(false);
+	    crearCuenta.setOpaque(true);
+	    crearCuenta.setBorderPainted(false);
+	    registerContainer.add(crearCuenta);
+
+	    // Botón volver
+	    JButton volverLogin = new JButton("Ya tengo cuenta");
+	    volverLogin.setBounds(35, 390, 340, 42);
+	    volverLogin.setBackground(new Color(230, 230, 230));
+	    volverLogin.setForeground(Color.BLACK);
+	    volverLogin.setFocusPainted(false);
+	    volverLogin.setOpaque(true);
+	    volverLogin.setBorderPainted(false);
+	    registerContainer.add(volverLogin);
+
+	    // Acción registrar
+	    crearCuenta.addActionListener(e -> {
+	        boolean valido = true;
+
+	        String nombre = nombreField.getText().trim();
+	        String correo = correoField.getText().trim();
+	        String password = new String(passwordField.getPassword()).trim();
+	        String biografia = bio.getText().trim();
+
+	        if (nombre.isEmpty()) {
+	            nombreField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	            valido = false;
+	        } else {
+	            nombreField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	        }
+
+	        if (correo.isEmpty() || !correo.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+	            correoField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	            valido = false;
+	        } else {
+	            correoField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	        }
+
+	        if (password.isEmpty() || password.length() < 5) {
+	            passwordField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	            valido = false;
+	        } else {
+	            passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	        }
+
+	        if (biografia.isEmpty()) {
+	            bio.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	            valido = false;
+	        } else {
+	            bio.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
+	        }
+
+	        if (!acceptTerms.isSelected()) {
+	            JOptionPane.showMessageDialog(
+	                null,
+	                "Debes aceptar los términos y condiciones.",
+	                "Aviso",
+	                JOptionPane.WARNING_MESSAGE
+	            );
+	            valido = false;
+	        }
+	        
+	        
+	        if ( valido  && model.addAccount(correo, password, nombre) ) { 
+	             
+	        	JOptionPane.showMessageDialog(
+		                null,
+		                "Registro exitoso\n\n" +
+		                "Nombre: " + nombre + "\n" +
+		                "Correo: " + correo + "\n",
+		                "Éxito",
+		                JOptionPane.INFORMATION_MESSAGE
+		            );
+	        	
+	            //router("login");
+	            ventana.dispose();
+		    	login();
+	        }else {
+	        	
+	        	JOptionPane.showMessageDialog(
+	                null,
+	                "No se pudo crear la cuenta.",
+	                "Aviso",
+	                JOptionPane.WARNING_MESSAGE
+	            );
+	        	
+	        }
+	    });
+
+	    // Acción volver
+	    volverLogin.addActionListener(e -> {
+	        //router("login");
+	    	ventana.dispose();
+	    	login();
+	    });
+
+	    ventana.add(panel); 
+	    ventana.setVisible(true);
 		
 	}
 
