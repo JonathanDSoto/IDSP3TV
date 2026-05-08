@@ -24,15 +24,18 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import controllers.HomeController;
 import models.AuthModel;
 
 public class AuthView {
 	
 	private AuthModel model;
+	private HomeController hm;
 	
 	public AuthView() {
 	
 		model = new AuthModel();
+		hm = new HomeController();
 	}
 	
 	public void login()
@@ -119,6 +122,9 @@ public class AuthView {
 					if( model.access(textField.getText(), passText) ) { 
 							
 						JOptionPane.showMessageDialog(null, "Bienvenido."); 
+						
+						ventana.dispose();
+						hm.home();
 						 
 					}else {
 						JOptionPane.showMessageDialog(null, "Error al acceder","verifique su información",JOptionPane.WARNING_MESSAGE);
