@@ -6,9 +6,15 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class HomeView {
+import controllers.UsersController;
 
+public class HomeView {
+	
+	private UsersController uc;
+	
 	public HomeView() {
+		
+		uc = new UsersController();
 	}
 	
 	public void showHome()
@@ -22,11 +28,15 @@ public class HomeView {
 		ventana.setTitle("Hola");
 		ventana.setLayout(null); 
 		ventana.getContentPane().setBackground(Color.gray);
+
 		
 		JButton goToUsers = new JButton("Ir a usuarios");
 		goToUsers.setBounds(100, 100, 200, 100);
 		goToUsers.addActionListener(e->{
-			//ir a la vista de usuarios
+			
+			uc.show();
+			ventana.dispose();
+			
 		});
 		ventana.add(goToUsers);
 		
