@@ -73,6 +73,42 @@ public class User {
 		
 		return list_usuarios;
 	}
+	
+	public boolean make(String name, String email, String password)
+	{
+		
+		String query = "INSERT INTO `users` (`id`, `email`, `password`, `name`, `phone`, `lastname`) VALUES (NULL, ?, ?, ?, NULL, NULL);";
+		
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://127.0.0.1:3306/p3tv",
+					"root",
+					""
+			);
+			
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ps.setString(3, name);
+			
+			int rowsAffected = ps.executeUpdate();
+			
+			if (rowsAffected > 0)
+				return true;
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 	public int getId() {
 		return id;

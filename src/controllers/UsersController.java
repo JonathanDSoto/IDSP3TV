@@ -22,8 +22,21 @@ public class UsersController {
 		
 		view.showUsers(usuarios);
 	}
+	
+	public boolean addUser(String name, String email, String pass)
+	{
+		
+		boolean response = model.make(name, email, pass);
+		
+		return response;
+	}
 
 }
+
+
+
+
+
 
 
 
